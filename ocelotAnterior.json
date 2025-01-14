@@ -1,0 +1,33 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/PacientesCustom/Get",
+      "DownstreamScheme": "https",
+      //Tener cuidado como se usa el HTTP y HTTPS, tanto en la ejecución y consulta en postman
+      //"DownstreamScheme": "http", 
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7131
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/PacientesCustom/Get",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/PacientesCustom/Insert",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7131
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/PacientesCustom/Insert",
+      "UpstreamHttpMethod": [ "POST" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:90"   
+  }
+}

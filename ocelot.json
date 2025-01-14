@@ -1,0 +1,57 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7131
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/{everything}",
+      //"UpstreamHttpMethod": [ "GET", "POST" ],
+      "UpstreamHttpMethod": []
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/Ventas/Listar",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7077
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/Ventas/Listar",
+      "UpstreamHttpMethod": [ "GET" ],
+      "Key": "ListarVentas"
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/Clientes/Listar",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7210
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/Clientes/Listar",
+      "UpstreamHttpMethod": [ "GET" ],
+      "Key": "ListarClientes"
+    }
+  ],
+
+  "Aggregates": [
+  {
+    "RouteKeys":[
+      "ListarVentas",
+      "ListarClientes"
+    ],
+    "UpstreamPathTemplate":"/aggregate/ListarVentasClientes",
+    "UpstreamHttpMethod":[ "GET" ],
+    "Aggregator":"VentasClientesAggregator"
+  }
+  ]
+}
